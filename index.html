@@ -1,44 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antler Intel</title>
-
-<!-- Tab favicon: SVG hexagon in brand green -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><polygon points='18,2 34,10 34,26 18,34 2,26 2,10' fill='%23b0cb0e'/><text x='18' y='24' text-anchor='middle' font-size='16' font-family='sans-serif' font-weight='900' fill='%230d0c14'>A</text></svg>">
-
+<title>Antler Intel — B2B Lead Intelligence</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  /* ── Theme tokens ── */
-  :root[data-theme="dark"] {
-    --bg:        #0d0c14;
-    --surface:   #13111f;
-    --surface2:  #1a1829;
-    --border:    #2a2640;
-    --accent:    #b0cb0e;
-    --navy:      #23203f;
-    --text:      #e8e5f0;
-    --muted:     #7a7590;
-    --danger:    #ff5f5f;
-    --grid-line: #2a2640;
-    --shadow:    rgba(0,0,0,0.4);
-    --opp-border:rgba(42,38,64,0.8);
-  }
-
-  :root[data-theme="light"] {
-    --bg:        #f5f4f0;
-    --surface:   #ffffff;
-    --surface2:  #eeecea;
-    --border:    #d8d5cc;
-    --accent:    #7a8f09;
-    --navy:      #e8f0c8;
-    --text:      #1a1828;
-    --muted:     #7a7590;
-    --danger:    #cc3333;
-    --grid-line: #d8d5cc;
-    --shadow:    rgba(0,0,0,0.08);
-    --opp-border:#d8d5cc;
+  :root {
+    --bg: #0d0c14;
+    --surface: #13111f;
+    --border: #2a2640;
+    --accent: #b0cb0e;
+    --navy: #23203f;
+    --text: #e8e5f0;
+    --muted: #7a7590;
+    --danger: #ff5f5f;
+    --mono: 'DM Mono', monospace;
+    --display: 'Syne', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,20 +24,20 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Syne', sans-serif;
+    font-family: var(--display);
     min-height: 100vh;
     overflow-x: hidden;
-    transition: background 0.3s, color 0.3s;
   }
 
   body::before {
     content: '';
-    position: fixed; inset: 0;
+    position: fixed;
+    inset: 0;
     background-image:
-      linear-gradient(var(--grid-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
     background-size: 40px 40px;
-    opacity: 0.35;
+    opacity: 0.3;
     pointer-events: none;
     z-index: 0;
   }
@@ -68,25 +46,26 @@
     position: fixed;
     width: 600px; height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(176,203,14,0.07) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(176,203,14,0.06) 0%, transparent 70%);
     top: -200px; right: -200px;
-    pointer-events: none; z-index: 0;
+    pointer-events: none;
+    z-index: 0;
   }
 
   .container {
-    position: relative; z-index: 1;
-    max-width: 920px;
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 40px 24px 80px;
+    padding: 40px 24px;
   }
 
-  /* ── Header ── */
   header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 48px;
-    padding-bottom: 20px;
+    margin-bottom: 56px;
+    padding-bottom: 24px;
     border-bottom: 1px solid var(--border);
   }
 
@@ -95,27 +74,14 @@
   .logo-mark {
     width: 36px; height: 36px;
     background: var(--accent);
-    clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .logo-mark-letter {
-    font-family: 'Syne', sans-serif;
-    font-weight: 900;
-    font-size: 15px;
-    color: #0d0c14;
-    line-height: 1;
-    margin-top: 1px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   }
 
   .logo-text { font-size: 18px; font-weight: 800; letter-spacing: -0.5px; }
   .logo-text span { color: var(--accent); }
 
-  .header-right { display: flex; align-items: center; gap: 10px; }
-
   .badge {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--mono);
     font-size: 11px;
     color: var(--accent);
     background: rgba(176,203,14,0.1);
@@ -126,41 +92,20 @@
     text-transform: uppercase;
   }
 
-  /* ── Dark/Light toggle ── */
-  .theme-toggle {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 5px 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    transition: all 0.2s;
-    user-select: none;
-  }
-
-  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
-  .theme-toggle .icon { font-size: 13px; }
-
-  /* ── Hero ── */
-  .hero { margin-bottom: 36px; }
+  .hero { margin-bottom: 40px; }
 
   .hero h1 {
-    font-size: clamp(26px, 4.5vw, 40px);
+    font-size: clamp(28px, 5vw, 42px);
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -1px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   .hero h1 em { font-style: normal; color: var(--accent); }
 
   .hero p {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--mono);
     font-size: 13px;
     color: var(--muted);
     font-weight: 300;
@@ -168,19 +113,21 @@
     max-width: 520px;
   }
 
-  /* ── Input panel ── */
   .input-panel {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 26px;
-    margin-bottom: 28px;
-    box-shadow: 0 4px 24px var(--shadow);
+    padding: 28px;
+    margin-bottom: 32px;
   }
 
+  /* FIX: unified field-label class used for ALL labels inside the panel —
+     previously mixed <label> tags and .input-panel-label divs with split CSS,
+     causing the "Focus Areas" label to be unstyled and the <label> wrapping
+     the chips row to bubble synthetic clicks through to chips, toggling them twice. */
   .field-label {
     display: block;
-    font-family: 'DM Mono', monospace;
+    font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -188,62 +135,39 @@
     margin-bottom: 8px;
   }
 
-  .input-row { display: flex; gap: 10px; margin-bottom: 20px; }
+  .input-row { display: flex; gap: 12px; margin-bottom: 20px; }
 
   .input-row input {
     flex: 1;
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 13px 16px;
+    padding: 14px 18px;
     color: var(--text);
-    font-family: 'DM Mono', monospace;
+    font-family: var(--mono);
     font-size: 14px;
     outline: none;
-    transition: border-color 0.2s, background 0.3s;
+    transition: border-color 0.2s;
   }
 
   .input-row input:focus { border-color: var(--accent); }
   .input-row input::placeholder { color: var(--muted); }
 
-  /* ── Pitch template selector ── */
-  .template-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-  }
-
-  .tmpl-chip {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px 13px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.15s;
-    user-select: none;
-  }
-
-  .tmpl-chip:hover { border-color: var(--accent); color: var(--accent); }
-  .tmpl-chip.active { background: rgba(176,203,14,0.12); border-color: var(--accent); color: var(--accent); font-weight: 500; }
-
-  /* ── Option chips ── */
   .options-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 
   .option-chip {
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 7px 13px;
-    font-family: 'DM Mono', monospace;
+    padding: 7px 14px;
+    font-family: var(--mono);
     font-size: 12px;
     color: var(--muted);
     cursor: pointer;
     transition: all 0.15s;
-    display: flex; align-items: center; gap: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     user-select: none;
   }
 
@@ -251,21 +175,23 @@
   .option-chip.active { background: rgba(176,203,14,0.12); border-color: var(--accent); color: var(--accent); }
   .option-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
 
-  /* ── Run button ── */
   .run-btn {
     width: 100%;
     background: var(--accent);
     color: #0d0c14;
     border: none;
     border-radius: 10px;
-    padding: 14px;
-    font-family: 'Syne', sans-serif;
+    padding: 15px;
+    font-family: var(--display);
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
 
   .run-btn:hover:not(:disabled) { background: #c8e610; transform: translateY(-1px); }
@@ -276,34 +202,35 @@
   .loading-state.active { display: block; }
 
   .pulse-ring {
-    width: 60px; height: 60px;
+    width: 64px; height: 64px;
     border-radius: 50%;
     border: 2px solid var(--accent);
-    margin: 0 auto 22px;
+    margin: 0 auto 24px;
     position: relative;
     animation: pulse-ring 1.5s ease-in-out infinite;
   }
 
   .pulse-ring::after {
     content: '';
-    position: absolute; inset: 7px;
+    position: absolute;
+    inset: 6px;
     border-radius: 50%;
     background: var(--accent);
     animation: pulse-core 1.5s ease-in-out infinite;
   }
 
   @keyframes pulse-ring {
-    0%,100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.15); opacity: 0.6; }
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.7; }
   }
 
   @keyframes pulse-core {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(0.75); }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.8); }
   }
 
   .loading-label {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--mono);
     font-size: 12px;
     color: var(--muted);
     letter-spacing: 1px;
@@ -318,15 +245,15 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
     gap: 16px;
   }
 
   .company-title { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
   .company-title span {
     display: block;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-family: var(--mono);
+    font-size: 12px;
     font-weight: 400;
     color: var(--muted);
     margin-bottom: 4px;
@@ -334,72 +261,61 @@
     text-transform: uppercase;
   }
 
-  .result-meta { display: flex; gap: 8px; flex-shrink: 0; }
-
   .score-badge {
-    background: rgba(176,203,14,0.1);
+    background: rgba(176,203,14,0.12);
     border: 1px solid var(--accent);
     border-radius: 10px;
-    padding: 8px 14px;
+    padding: 10px 16px;
     text-align: center;
+    flex-shrink: 0;
   }
 
-  .score-badge .score-val { font-size: 22px; font-weight: 800; color: var(--accent); line-height: 1; }
+  .score-badge .score-val { font-size: 24px; font-weight: 800; color: var(--accent); line-height: 1; }
   .score-badge .score-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; color: var(--muted);
-    text-transform: uppercase; letter-spacing: 1px; margin-top: 2px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 3px;
   }
 
-  .template-badge {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 8px 14px;
-    text-align: center;
-  }
-
-  .template-badge .tmpl-val {
-    font-size: 12px; font-weight: 700;
-    color: var(--accent); line-height: 1;
-    white-space: nowrap;
-  }
-
-  .template-badge .tmpl-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; color: var(--muted);
-    text-transform: uppercase; letter-spacing: 1px; margin-top: 2px;
-  }
-
-  /* ── Cards ── */
+  /* ── Cards grid ── */
   .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+
+  @media (max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .input-row { flex-direction: column; }
+    .opp-table-header, .opp-row { grid-template-columns: 1fr; }
+  }
 
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 20px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 12px var(--shadow);
+    transition: border-color 0.2s;
   }
 
-  .card:hover { border-color: rgba(176,203,14,0.4); box-shadow: 0 4px 20px var(--shadow); }
+  .card:hover { border-color: rgba(176,203,14,0.3); }
   .card.full { grid-column: 1 / -1; }
 
   .card-tag {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--mono);
     font-size: 10px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 10px;
-    display: flex; align-items: center; gap: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
-  .card-tag::before { content: ''; width: 14px; height: 1px; background: var(--accent); flex-shrink: 0; }
+  .card-tag::before { content: ''; width: 16px; height: 1px; background: var(--accent); flex-shrink: 0; }
 
   .card-body {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--mono);
     font-size: 13px;
     color: var(--text);
     line-height: 1.7;
@@ -410,46 +326,55 @@
   .card-body ul { list-style: none; padding: 0; margin: 6px 0; }
   .card-body ul li { padding: 3px 0 3px 16px; position: relative; }
   .card-body ul li::before { content: '›'; position: absolute; left: 0; color: var(--accent); }
-  .card-body p { margin: 3px 0; }
+  .card-body p { margin: 4px 0; }
 
   /* ── Opportunities ── */
   .opportunities-box {
     background: var(--surface);
-    border: 1px solid rgba(176,203,14,0.3);
+    border: 1px solid rgba(176,203,14,0.25);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 14px;
-    box-shadow: 0 2px 12px var(--shadow);
   }
 
-  .opportunities-box .card-tag { margin-bottom: 14px; }
+  .opportunities-box .card-tag { margin-bottom: 16px; }
 
   .opp-table-header {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 12px; margin-bottom: 8px; padding-bottom: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
     border-bottom: 1px solid var(--border);
   }
 
   .opp-col-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--muted);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
   }
 
   .opp-row {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 12px; padding: 10px 0;
-    border-bottom: 1px solid var(--opp-border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(42,38,64,0.6);
     align-items: start;
   }
 
   .opp-row:last-child { border-bottom: none; }
 
   .opp-issue, .opp-solution {
-    font-family: 'DM Mono', monospace;
-    font-size: 12.5px; color: var(--text);
-    font-weight: 300; line-height: 1.6;
-    padding-left: 16px; position: relative;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--text);
+    font-weight: 300;
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
   }
 
   .opp-issue::before { content: '!'; position: absolute; left: 0; color: #f0a500; font-weight: 700; font-size: 11px; }
@@ -458,20 +383,22 @@
   /* ── Outreach ── */
   .outreach-box {
     background: var(--navy);
-    border: 1px solid rgba(176,203,14,0.25);
+    border: 1px solid rgba(176,203,14,0.2);
     border-radius: 12px;
     padding: 20px;
     margin-top: 14px;
-    box-shadow: 0 2px 12px var(--shadow);
   }
 
   .outreach-box .card-tag { margin-bottom: 12px; }
 
   .outreach-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px; line-height: 1.9;
-    color: var(--text); font-weight: 300;
-    white-space: pre-wrap; word-break: break-word;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--text);
+    font-weight: 300;
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 
   .copy-btn {
@@ -480,9 +407,11 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 8px 16px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--muted);
-    cursor: pointer; transition: all 0.15s;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
     letter-spacing: 0.5px;
   }
 
@@ -493,53 +422,67 @@
     display: none;
     background: rgba(255,95,95,0.08);
     border: 1px solid rgba(255,95,95,0.3);
-    border-radius: 12px; padding: 20px;
-    font-family: 'DM Mono', monospace;
-    font-size: 13px; color: var(--danger); line-height: 1.6;
+    border-radius: 12px;
+    padding: 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--danger);
+    line-height: 1.6;
   }
 
   .error-state.active { display: block; }
 
   /* ── History ── */
-  .history-section { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .history-section { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .section-label { font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
   .history-pills { display: flex; flex-wrap: wrap; gap: 8px; }
 
   .history-pill {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 20px; padding: 5px 13px;
-    font-family: 'DM Mono', monospace; font-size: 12px;
-    color: var(--muted); cursor: pointer; transition: all 0.15s;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
   }
 
   .history-pill:hover { border-color: var(--accent); color: var(--text); }
 
   /* ── Animations ── */
+  /* FIX: @keyframes spin was accidentally deleted when opportunities CSS was
+     inserted — the button spinner had no animation and rendered as a static arc. */
   @keyframes spin { to { transform: rotate(360deg); } }
 
   .spinner {
     width: 16px; height: 16px;
-    border: 2px solid rgba(0,0,0,0.2);
-    border-top-color: #0d0c14;
+    border: 2px solid rgba(0,0,0,0.25);
+    border-top-color: #000;
     border-radius: 50%;
     animation: spin 0.7s linear infinite;
     flex-shrink: 0;
   }
 
-  .fade-up {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
+  @keyframes pulse-ring {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.7; }
   }
 
-  .fade-up.reveal { opacity: 1; transform: translateY(0); }
+  /* FIX: fade-up now uses a class-toggle approach instead of inline opacity:0 +
+     JS opacity reassignment. Inline styles fight CSS animation specificity in
+     unpredictable ways across browsers. The .reveal class simply removes the
+     hidden state cleanly. */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
 
-  /* ── Responsive ── */
-  @media (max-width: 620px) {
-    .cards-grid { grid-template-columns: 1fr; }
-    .input-row { flex-direction: column; }
-    .opp-table-header, .opp-row { grid-template-columns: 1fr; }
-    .result-meta { flex-direction: column; }
+  .fade-up.reveal {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
 </head>
@@ -549,47 +492,37 @@
 
   <header>
     <div class="logo">
-      <div class="logo-mark"><span class="logo-mark-letter">A</span></div>
+      <div class="logo-mark"></div>
       <div class="logo-text">Antler<span>Intel</span></div>
     </div>
-    <div class="header-right">
-      <div class="badge">AI-Powered</div>
-      <div class="theme-toggle" id="themeToggle">
-        <span class="icon" id="themeIcon">☀️</span>
-        <span id="themeLabel">Light</span>
-      </div>
-    </div>
+    <div class="badge">AI-Powered</div>
   </header>
 
   <div class="hero">
     <h1>Know your prospect<br><em>before the call.</em></h1>
-    <p>Enter a company name or domain. Get a full intelligence brief built around Antler Foundry's services — ready to act on.</p>
+    <p>Enter a company name or domain. Get a full intelligence brief — pain points, decision makers, tech stack, and a ready-to-send outreach angle tailored to Antler Foundry's offerings.</p>
   </div>
 
   <div class="input-panel">
+    <!-- FIX: All labels are now plain <div class="field-label"> elements.
+         Using a real <label> element wrapping or adjacent to the chips caused
+         the browser to fire a synthetic click on a form control when the label
+         was clicked, which toggled each chip twice (on then immediately off),
+         making chips appear non-interactive. -->
     <div class="field-label">Company Name or Domain</div>
     <div class="input-row">
       <input type="text" id="companyInput" placeholder="e.g. Dialog Axiata, PickMe, dialog.lk" />
     </div>
 
-    <div class="field-label">Pitch Template</div>
-    <div class="template-row" id="templateRow">
-      <div class="tmpl-chip active" data-tmpl="general">General</div>
-      <div class="tmpl-chip" data-tmpl="retail">Retail & POS</div>
-      <div class="tmpl-chip" data-tmpl="finance">Finance & Banking</div>
-      <div class="tmpl-chip" data-tmpl="logistics">Logistics & Supply Chain</div>
-      <div class="tmpl-chip" data-tmpl="healthcare">Healthcare</div>
-      <div class="tmpl-chip" data-tmpl="manufacturing">Manufacturing</div>
-    </div>
-
-    <div class="field-label">Focus Areas</div>
+    <div class="field-label">Focus Areas — select what intel you need</div>
     <div class="options-row">
       <div class="option-chip active" data-val="overview"><span class="dot"></span> Company Overview</div>
       <div class="option-chip active" data-val="painpoints"><span class="dot"></span> Pain Points</div>
       <div class="option-chip active" data-val="techstack"><span class="dot"></span> Tech Stack</div>
-      <div class="option-chip active" data-val="contacts"><span class="dot"></span> Pain Owners</div>
+      <div class="option-chip active" data-val="contacts"><span class="dot"></span> Decision Makers</div>
       <div class="option-chip active" data-val="opportunities"><span class="dot"></span> Issues & Opportunities</div>
       <div class="option-chip active" data-val="outreach"><span class="dot"></span> Outreach Angle</div>
+      <div class="option-chip" data-val="competitors"><span class="dot"></span> Competitors & Partners</div>
       <div class="option-chip" data-val="signals"><span class="dot"></span> Growth Signals</div>
     </div>
 
@@ -618,37 +551,9 @@
 
 </div>
 <script>
-  // ── Theme toggle ───────────────────────────────────────────────────────────
-  const html = document.documentElement;
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIcon   = document.getElementById('themeIcon');
-  const themeLabel  = document.getElementById('themeLabel');
-
-  // Respect system preference on first load
-  if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-    html.setAttribute('data-theme', 'light');
-    themeIcon.textContent  = '🌙';
-    themeLabel.textContent = 'Dark';
-  }
-
-  themeToggle.addEventListener('click', () => {
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    themeIcon.textContent  = isDark ? '🌙' : '☀️';
-    themeLabel.textContent = isDark ? 'Dark' : 'Light';
-  });
-
-  // ── Template selection (single-select) ────────────────────────────────────
-  let activeTemplate = 'general';
-  document.querySelectorAll('.tmpl-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      document.querySelectorAll('.tmpl-chip').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      activeTemplate = chip.dataset.tmpl;
-    });
-  });
-
-  // ── Section chip toggles ──────────────────────────────────────────────────
+  // ── Chip toggles ───────────────────────────────────────────────────────────
+  // Attached via JS so there is zero ambiguity about what element is clicked.
+  // No <label> wrappers anywhere near chips — that was the root cause of double-toggle.
   document.querySelectorAll('.option-chip').forEach(chip => {
     chip.addEventListener('click', () => chip.classList.toggle('active'));
   });
@@ -660,9 +565,9 @@
   const LOADING_MSGS = [
     'Scanning intelligence sources...',
     'Profiling company structure...',
-    'Identifying pain owners...',
+    'Identifying decision makers...',
     'Mapping issues & opportunities...',
-    'Building outreach angle...',
+    'Crafting outreach angle...',
     'Compiling intelligence brief...'
   ];
 
@@ -676,158 +581,74 @@
     }, 2200);
   }
 
-  function stopLoading() { clearInterval(loadingInterval); loadingInterval = null; }
+  function stopLoading() {
+    clearInterval(loadingInterval);
+    loadingInterval = null;
+  }
 
   function getActiveOptions() {
     return Array.from(document.querySelectorAll('.option-chip.active')).map(c => c.dataset.val);
   }
 
+  // ── Button state ───────────────────────────────────────────────────────────
   function setBtnLoading(on) {
-    const btn  = document.getElementById('runBtn');
-    const lbl  = document.getElementById('btnLabel');
-    const wrap = document.getElementById('btnIconWrap');
-    btn.disabled     = on;
-    lbl.textContent  = on ? 'Scanning...' : 'Run Intelligence Scan';
-    wrap.innerHTML   = on
+    const btn   = document.getElementById('runBtn');
+    const label = document.getElementById('btnLabel');
+    const wrap  = document.getElementById('btnIconWrap');
+    btn.disabled      = on;
+    label.textContent = on ? 'Scanning...' : 'Run Intelligence Scan';
+    wrap.innerHTML    = on
       ? '<div class="spinner"></div>'
       : '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
   }
 
-  // ── Pitch template context injected into outreach prompt ──────────────────
-  const TEMPLATE_CONTEXT = {
-    general: {
-      label: 'General',
-      outreachAddons: `Antler Foundry's key service areas to reference where relevant:
-- Data analytics & AI integration: turning raw data into actionable business intelligence
-- Robotic Process Automation (RPA): eliminating repetitive manual workflows
-- Market movement & trend analysis: AI-driven dashboards for premium decision-making
-- Custom software & system integration: bridging disconnected platforms`
-    },
-    retail: {
-      label: 'Retail & POS',
-      outreachAddons: `Antler Foundry's key service areas to reference where relevant:
-- POS data integration: connecting point-of-sale systems to back-office ERP, inventory & analytics platforms in real time
-- Data analytics & AI: sales trend analysis, demand forecasting, and customer behaviour intelligence from POS & loyalty data
-- RPA: automating stock replenishment, invoice processing & supplier reconciliation
-- Market & trend dashboards: real-time retail market movement insights for premium merchandising decisions`
-    },
-    finance: {
-      label: 'Finance & Banking',
-      outreachAddons: `Antler Foundry's key service areas to reference where relevant:
-- Data analytics & AI: credit risk modelling, fraud detection, and customer segmentation
-- RPA: automating KYC, loan processing, reconciliation & compliance reporting workflows
-- AI-driven decision support: market movement dashboards & macro trend analysis for investment decisions
-- System integration: connecting core banking systems, payment gateways & reporting tools`
-    },
-    logistics: {
-      label: 'Logistics & Supply Chain',
-      outreachAddons: `Antler Foundry's key service areas to reference where relevant:
-- Data analytics & AI: route optimisation, demand forecasting & fleet performance intelligence
-- RPA: automating shipment tracking updates, customs documentation & billing workflows
-- Supply chain visibility: real-time integration across warehouse, transport & supplier systems
-- Market & trend analysis: commodity price movement dashboards for procurement decision-making`
-    },
-    healthcare: {
-      label: 'Healthcare',
-      outreachAddons: `Antler Foundry's key service areas to reference where relevant:
-- Data analytics & AI: patient outcome analytics, resource utilisation & predictive diagnostics support
-- RPA: automating appointment scheduling, billing, insurance claims & lab report workflows
-- System integration: connecting EMR/EHR platforms, lab systems & patient portals
-- Compliance & reporting automation: regulatory submission workflows`
-    },
-    manufacturing: {
-      label: 'Manufacturing',
-      outreachAddons: `Antler Foundry's key service areas to reference where relevant:
-- Data analytics & AI: OEE tracking, predictive maintenance & production yield intelligence
-- RPA: automating procurement orders, quality control checklists & production reporting
-- POS/sales data integration: connecting sales data back to production planning systems
-- Market & trend dashboards: raw material price movement & supply market intelligence`
-    }
-  };
-
   // ── Prompt builder ─────────────────────────────────────────────────────────
-  function buildPrompt(company, options, template) {
-    const tmpl = TEMPLATE_CONTEXT[template] || TEMPLATE_CONTEXT.general;
-
+  function buildPrompt(company, options) {
     const sectionInstructions = {
-
-      // Focused only on what matters to an IT consultancy
       overview: `## SECTION: Company Overview
-Provide a concise summary focused ONLY on what is relevant for an IT consultancy evaluating this company as a prospect. Include:
-- Industry & core business model (1 line)
-- Estimated size (headcount / revenue tier)
-- Key digital or operational characteristics (how they operate, serve customers, manage data)
-- Any recent strategic moves relevant to IT investment (digital transformation, expansion, new products)
-- Known IT maturity level (if available)
-Omit generic company history. 4-5 bullet points maximum. Every point must be relevant to an IT sales conversation.`,
+Provide: industry vertical, estimated headcount, what they do, key products/services, HQ location, and any notable recent developments. 4-6 bullet points. Factual and concise.`,
 
-      // Brief, specific, actionable
       painpoints: `## SECTION: Pain Points
-List exactly 5 specific, brief pain points this company likely faces. Format as tight bullet points — one line each, no paragraphs. Focus on:
-- Operational inefficiencies (manual processes, data silos, legacy systems)
-- Digital gaps (poor automation, disconnected tools, limited analytics)
-- Customer experience shortfalls
-- Compliance or reporting burdens
-Each point must be directly actionable — something Antler Foundry could pitch a solution against.`,
+List 4-6 SPECIFIC operational or digital pain points this type of company likely faces — e.g. legacy systems, manual workflows, fragmented data, lack of automation, poor digital customer experience, IT bottlenecks. Tie each pain point to their industry and scale. Do NOT repeat anything from other sections.`,
 
-      // Brief bullets only
       techstack: `## SECTION: Tech Stack & Tools
-List the software, platforms and infrastructure this company is known or estimated to use. One-line bullets only — no explanations. Group loosely as:
-- ERP / core systems
-- CRM / customer platforms
-- Cloud & infrastructure
-- Data & analytics tools
-- Communication & productivity
-Label unknowns as "Estimated:". Keep it scannable.`,
+List the software, platforms, and infrastructure this company is known or likely to use — ERP systems, CRM platforms, cloud providers, payment gateways, communication tools, development frameworks, data tools. Label unknowns as "Estimated:". Bullet list format.`,
 
-      // Pain owners, not title owners
-      contacts: `## SECTION: Pain Owners
-Identify 4-5 roles at this company who: (1) personally feel the operational problems, (2) are likely to respond to a cold email about efficiency or digital improvement, and (3) have enough internal influence to push a solution forward — even if they don't hold the final budget sign-off.
+      contacts: `## SECTION: Decision Makers to Target
+List exactly 4-5 specific JOB TITLES at this company that an IT consultancy should target for pitching custom software, automation, or AI services. Do NOT list actual people's names. For each title, write one sentence explaining WHY that role is the right contact — what decisions they control and how Antler Foundry's services align with their priorities.`,
 
-These are NOT necessarily C-suite. They may be Department Heads, Operations Managers, IT Managers, Finance Controllers, or Digital Leads who live with the pain daily.
+      competitors: `## SECTION: Current Partners & Competitors
+List the known or likely IT vendors, software partners, system integrators, or competing solutions this company uses or works with. Include any publicly known technology partnerships. Label unknowns as "Likely:".`,
 
-For each role, provide:
-- Job title
-- Why they feel the pain (1 line)
-- Why they'd respond to Antler Foundry's pitch (1 line)`,
-
-      // Brief bullets
       signals: `## SECTION: Growth Signals
-List 4-5 recent signals indicating this company is open to IT investment. One-line bullets only. Cover: funding, hiring for tech roles, new product launches, expansion, digital transformation announcements, leadership changes. Label inferences as "Likely:".`,
+List 4-5 recent or current signals indicating this company is open to IT investment — funding rounds, geographic expansion, tech hiring sprees, new product launches, digital transformation announcements, leadership changes, or strategic pivots. Be specific where data is available.`,
 
-      // Issue/solution pairs
       opportunities: `## SECTION: Issues & Opportunities
-Identify 5-6 specific issues or opportunities Antler Foundry can directly address at this company. Format EXACTLY as:
+Identify 5-7 specific issues or opportunities at this company that Antler Foundry can directly address. Format each item EXACTLY as shown below — no deviations:
 
-ISSUE: [one concise sentence describing the specific problem]
-SOLUTION: [one concise sentence describing what Antler Foundry builds or implements to solve it]
+ISSUE: [1-2 sentences describing the specific problem or gap at this company]
+SOLUTION: [1-2 sentences describing what Antler Foundry would build or implement to solve it]
 
-Cover a mix of: process automation, data & analytics gaps, AI integration, system integration, customer experience, and IT infrastructure. Be specific to this company's industry and scale. Each pair must be distinct.`,
+Cover a mix of: process automation, custom software gaps, data/analytics shortfalls, AI integration, customer experience, and IT infrastructure. Be specific to this company's industry and scale. Each pair must be completely distinct.`,
 
-      // Expanded outreach with Antler's full service angle
       outreach: `## SECTION: Outreach Angle
-Write a complete cold outreach email from Antler Foundry to this company. Antler Foundry is a Sri Lanka-based IT consultancy. Use the pitch template context below when writing the email.
+Write a complete cold outreach email from Antler Foundry to this company. Use this exact format:
 
-PITCH TEMPLATE — ${tmpl.label}:
-${tmpl.outreachAddons}
+Subject: [specific, compelling subject line]
 
-Email format — write every line, no placeholders left unfilled:
+Hi [Relevant Title],
 
-Subject: [specific subject line that references something real about this company]
+[Paragraph 1: Reference something specific about the company — a challenge or growth signal. 2 sentences.]
 
-Hi [specific role title — a pain owner, not a generic title],
+[Paragraph 2: Connect their challenge to Antler Foundry's services — automation, custom software, or AI. 2 sentences.]
 
-[Paragraph 1: One sharp observation about this company — a challenge, growth move, or inefficiency specific to them. 2 sentences max.]
-
-[Paragraph 2: Connect 2-3 of Antler Foundry's relevant services from the pitch template above to their specific situation. Name the services explicitly. 2-3 sentences.]
-
-[Paragraph 3: Single soft CTA — ask for a 20-minute call or a quick reply. 1 sentence.]
+[Paragraph 3: Single low-friction CTA — request a 20-minute call. 1 sentence.]
 
 Best regards,
 [Your Name]
 Business Development | Antler Foundry
 
-RULES: No em-dashes. Use "&" not "and". Conversational & human — not brochure language. Under 35 seconds to read. Write the full email — do not truncate or use placeholder text.`
+RULES: No em-dashes. Use "&" not "and". Human tone. Under 30 seconds to read. Write the email in full — do not truncate.`
     };
 
     const requested = options
@@ -838,13 +659,12 @@ RULES: No em-dashes. Use "&" not "and". Conversational & human — not brochure 
     return `You are a senior B2B sales intelligence analyst. Your client is a Business Development Executive at Antler Foundry, an IT consultancy in Colombo, Sri Lanka.
 
 TARGET COMPANY: ${company}
-PITCH TEMPLATE: ${tmpl.label}
 
-Research this company thoroughly using web search. Produce a sharp, sales-ready intelligence brief. Each section is COMPLETELY DISTINCT — do not repeat content across sections. Label inferences as "Likely:" or "Estimated:".
+Research this company and produce an intelligence brief. Each section is COMPLETELY DISTINCT — do not repeat content across sections. Label inferences as "Likely:" or "Estimated:". Use web search for current information.
 
 ${requested}
 
-CRITICAL: Output every section with its exact heading (## SECTION: ...). Complete each section fully before starting the next. Do not truncate any section.`;
+CRITICAL: Output every section with its exact heading (## SECTION: ...). Complete each section fully before starting the next. Do not skip or truncate any section.`;
   }
 
   // ── Main scan ──────────────────────────────────────────────────────────────
@@ -864,34 +684,35 @@ CRITICAL: Output every section with its exact heading (## SECTION: ...). Complet
     startLoading();
 
     try {
-      const response = await fetch('/.netlify/functions/proxy', {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: 'claude-sonnet-4-20250514',
           max_tokens: 4000,
-          body: JSON.stringify({
-           model: 'claude-sonnet-4-20250514',
-           max_tokens: 4000,
-           messages: [{ role: 'user', content: buildPrompt(company, options, activeTemplate) }]
-          })
-          messages: [{ role: 'user', content: buildPrompt(company, options, activeTemplate) }]
+          tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+          messages: [{ role: 'user', content: buildPrompt(company, options) }]
         })
       });
 
       const data = await response.json();
-      if (!response.ok) throw new Error(data.error?.message || `API error ${response.status}`);
+
+      if (!response.ok) {
+        throw new Error(data.error?.message || `API error ${response.status}`);
+      }
 
       const fullText = data.content
         .filter(b => b.type === 'text')
         .map(b => b.text)
         .join('\n');
 
-      if (!fullText.trim()) throw new Error('No content returned. Please try again.');
+      if (!fullText.trim()) {
+        throw new Error('No content returned. The model may have only executed search queries — please try again.');
+      }
 
       stopLoading();
       document.getElementById('loadingState').classList.remove('active');
-      renderResults(company, fullText, options, activeTemplate);
+      renderResults(company, fullText, options);
       addToHistory(company);
 
     } catch (err) {
@@ -915,46 +736,69 @@ CRITICAL: Output every section with its exact heading (## SECTION: ...). Complet
       if (nl === -1) continue;
       const heading = part.slice(0, nl).trim().toLowerCase();
       const body    = part.slice(nl).trim();
-      if      (heading.includes('overview'))                                   map['overview']      = body;
-      else if (heading.includes('pain'))                                       map['painpoints']    = body;
-      else if (heading.includes('tech'))                                       map['techstack']     = body;
-      else if (heading.includes('pain owner') || heading.includes('owner'))   map['contacts']      = body;
-      else if (heading.includes('growth') || heading.includes('signal'))      map['signals']       = body;
-      else if (heading.includes('issue') || heading.includes('opportunit'))   map['opportunities'] = body;
-      else if (heading.includes('outreach'))                                   map['outreach']      = body;
+
+      if      (heading.includes('overview'))                                    map['overview']       = body;
+      else if (heading.includes('pain'))                                        map['painpoints']     = body;
+      else if (heading.includes('tech'))                                        map['techstack']      = body;
+      else if (heading.includes('decision'))                                    map['contacts']       = body;
+      else if (heading.includes('partner') || heading.includes('competitor'))  map['competitors']    = body;
+      else if (heading.includes('growth')  || heading.includes('signal'))      map['signals']        = body;
+      else if (heading.includes('issue')   || heading.includes('opportunit'))  map['opportunities']  = body;
+      else if (heading.includes('outreach'))                                    map['outreach']       = body;
     }
     return map;
   }
 
   // ── Opportunities parser ───────────────────────────────────────────────────
+  // FIX: Rewrote regex to use the 'm' (multiline) flag so that '$' matches
+  // end-of-line rather than end-of-string. Without 'm', the ISSUE content regex
+  // (?=SOLUTION:|$) would only stop at the very end of the entire text block,
+  // causing ISSUE content to absorb the SOLUTION text on multi-line entries.
   function parseOpportunities(text) {
     const pairs = [];
     if (!text) return pairs;
 
-    const tryParse = (blocks) => {
-      for (const block of blocks) {
-        const im = block.match(/ISSUE:\s*([\s\S]+?)(?=SOLUTION:|$)/im);
-        const sm = block.match(/SOLUTION:\s*([\s\S]+?)(?=ISSUE:|$)/im);
-        if (im && sm) {
+    // Split into numbered blocks first (handles "1. ISSUE: ..." format)
+    const blocks = text.split(/\n(?=\d+[\.\)]?\s*ISSUE:)/i);
+
+    for (const block of blocks) {
+      // Use 'm' flag: '$' now matches end-of-line, not end-of-string
+      const issueMatch    = block.match(/ISSUE:\s*([\s\S]+?)(?=SOLUTION:|$)/im);
+      const solutionMatch = block.match(/SOLUTION:\s*([\s\S]+?)(?=ISSUE:|$)/im);
+
+      if (issueMatch && solutionMatch) {
+        pairs.push({
+          issue:    issueMatch[1].trim().replace(/\n+/g, ' '),
+          solution: solutionMatch[1].trim().replace(/\n+/g, ' ')
+        });
+      }
+    }
+
+    // If no numbered blocks, try splitting on bare ISSUE: markers
+    if (!pairs.length) {
+      const bareBlocks = text.split(/\n(?=ISSUE:)/i).filter(b => b.trim());
+      for (const block of bareBlocks) {
+        const issueMatch    = block.match(/ISSUE:\s*([\s\S]+?)(?=SOLUTION:|$)/im);
+        const solutionMatch = block.match(/SOLUTION:\s*([\s\S]+?)(?=ISSUE:|$)/im);
+        if (issueMatch && solutionMatch) {
           pairs.push({
-            issue:    im[1].trim().replace(/\n+/g, ' '),
-            solution: sm[1].trim().replace(/\n+/g, ' ')
+            issue:    issueMatch[1].trim().replace(/\n+/g, ' '),
+            solution: solutionMatch[1].trim().replace(/\n+/g, ' ')
           });
         }
       }
-    };
+    }
 
-    tryParse(text.split(/\n(?=\d+[\.\)]?\s*ISSUE:)/i));
-    if (!pairs.length) tryParse(text.split(/\n(?=ISSUE:)/i).filter(b => b.trim()));
     return pairs;
   }
 
   // ── Markdown → HTML ────────────────────────────────────────────────────────
   function formatBody(text) {
-    if (!text) return '<em style="color:var(--muted)">No data available.</em>';
+    if (!text) return '<em style="color:var(--muted)">No data available for this section.</em>';
     const lines = text.split('\n');
-    const out = [];
-    let inList = false;
+    const out   = [];
+    let inList  = false;
+
     for (let raw of lines) {
       let line = raw.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
       if (/^[-•*]\s+/.test(line)) {
@@ -962,44 +806,41 @@ CRITICAL: Output every section with its exact heading (## SECTION: ...). Complet
         out.push('<li>' + line.replace(/^[-•*]\s+/, '') + '</li>');
       } else {
         if (inList) { out.push('</ul>'); inList = false; }
-        const t = line.trim();
-        if (t) out.push('<p>' + t + '</p>');
+        const trimmed = line.trim();
+        if (trimmed) out.push('<p>' + trimmed + '</p>');
       }
     }
     if (inList) out.push('</ul>');
     return out.join('');
   }
 
-  // ── Render ─────────────────────────────────────────────────────────────────
-  function renderResults(company, text, options, template) {
+  // ── Render results ─────────────────────────────────────────────────────────
+  function renderResults(company, text, options) {
     const resultsEl = document.getElementById('results');
     resultsEl.innerHTML = '';
+
     const parsed = parseSections(text);
-    const tmpl   = TEMPLATE_CONTEXT[template] || TEMPLATE_CONTEXT.general;
 
     // Header
     const header = document.createElement('div');
     header.className = 'result-header fade-up';
     header.innerHTML = `
-      <div class="company-title"><span>Intelligence Brief</span>${escHtml(company)}</div>
-      <div class="result-meta">
-        <div class="template-badge">
-          <div class="tmpl-val">${escHtml(tmpl.label)}</div>
-          <div class="tmpl-label">Template</div>
-        </div>
-        <div class="score-badge">
-          <div class="score-val">${options.length}</div>
-          <div class="score-label">Sections</div>
-        </div>
+      <div class="company-title">
+        <span>Intelligence Brief</span>${escHtml(company)}
+      </div>
+      <div class="score-badge">
+        <div class="score-val">${options.length}</div>
+        <div class="score-label">Sections</div>
       </div>`;
     resultsEl.appendChild(header);
 
     const cardDefs = [
-      { key: 'overview',   label: 'Company Overview' },
-      { key: 'painpoints', label: 'Pain Points' },
-      { key: 'techstack',  label: 'Tech Stack & Tools' },
-      { key: 'contacts',   label: 'Pain Owners' },
-      { key: 'signals',    label: 'Growth Signals' },
+      { key: 'overview',    label: 'Company Overview' },
+      { key: 'painpoints',  label: 'Pain Points' },
+      { key: 'techstack',   label: 'Tech Stack & Tools' },
+      { key: 'contacts',    label: 'Decision Makers' },
+      { key: 'competitors', label: 'Partners & Competitors' },
+      { key: 'signals',     label: 'Growth Signals' },
     ];
 
     const activeCards = cardDefs.filter(s => options.includes(s.key));
@@ -1007,28 +848,35 @@ CRITICAL: Output every section with its exact heading (## SECTION: ...). Complet
     if (activeCards.length) {
       const grid = document.createElement('div');
       grid.className = 'cards-grid fade-up';
+
       activeCards.forEach((s, i) => {
         const isLast = i === activeCards.length - 1;
         const isOdd  = activeCards.length % 2 !== 0;
-        const card = document.createElement('div');
+        const card   = document.createElement('div');
         card.className = 'card' + (activeCards.length === 1 || (isLast && isOdd) ? ' full' : '');
-        card.innerHTML = `<div class="card-tag">${escHtml(s.label)}</div><div class="card-body">${formatBody(parsed[s.key] || '')}</div>`;
+        card.innerHTML = `
+          <div class="card-tag">${escHtml(s.label)}</div>
+          <div class="card-body">${formatBody(parsed[s.key] || '')}</div>`;
         grid.appendChild(card);
       });
+
       resultsEl.appendChild(grid);
     }
 
-    // Opportunities
+    // Issues & Opportunities
     if (options.includes('opportunities')) {
       const oppEl = document.createElement('div');
       oppEl.className = 'opportunities-box fade-up';
       oppEl.innerHTML = '<div class="card-tag">Issues & Opportunities — Antler Foundry Fit</div>';
+
       const pairs = parseOpportunities(parsed['opportunities'] || '');
+
       if (pairs.length) {
-        const hr = document.createElement('div');
-        hr.className = 'opp-table-header';
-        hr.innerHTML = '<div class="opp-col-label">⚠ Issue / Opportunity</div><div class="opp-col-label">→ Antler Foundry Solution</div>';
-        oppEl.appendChild(hr);
+        const headerRow = document.createElement('div');
+        headerRow.className = 'opp-table-header';
+        headerRow.innerHTML = '<div class="opp-col-label">⚠ Issue / Opportunity</div><div class="opp-col-label">→ Antler Foundry Solution</div>';
+        oppEl.appendChild(headerRow);
+
         pairs.forEach(pair => {
           const row = document.createElement('div');
           row.className = 'opp-row';
@@ -1036,11 +884,12 @@ CRITICAL: Output every section with its exact heading (## SECTION: ...). Complet
           oppEl.appendChild(row);
         });
       } else {
-        const fb = document.createElement('div');
-        fb.className = 'card-body';
-        fb.innerHTML = '<em style="color:var(--muted)">No structured pairs found. The model may have used a different format.</em>';
-        oppEl.appendChild(fb);
+        const fallback = document.createElement('div');
+        fallback.className = 'card-body';
+        fallback.innerHTML = '<em style="color:var(--muted)">No opportunity data parsed. The model may have used a different format — check raw output.</em>';
+        oppEl.appendChild(fallback);
       }
+
       resultsEl.appendChild(oppEl);
     }
 
@@ -1048,21 +897,25 @@ CRITICAL: Output every section with its exact heading (## SECTION: ...). Complet
     if (options.includes('outreach')) {
       const outreachEl = document.createElement('div');
       outreachEl.className = 'outreach-box fade-up';
+
       const pre = document.createElement('div');
       pre.className = 'outreach-text';
       pre.id = 'outreachText';
-      pre.textContent = parsed['outreach'] || 'Outreach email not generated. Ensure the Outreach Angle chip is active.';
+      pre.textContent = parsed['outreach'] ||
+        'Outreach email was not generated. Ensure the "Outreach Angle" chip is active and try again.';
+
       const copyBtn = document.createElement('button');
       copyBtn.className = 'copy-btn';
       copyBtn.textContent = 'Copy to clipboard';
       copyBtn.addEventListener('click', function() { copyOutreach(this); });
+
       outreachEl.innerHTML = '<div class="card-tag">Outreach Angle — Antler Foundry</div>';
       outreachEl.appendChild(pre);
       outreachEl.appendChild(copyBtn);
       resultsEl.appendChild(outreachEl);
     }
 
-    // Fallback
+    // Fallback raw dump
     if (!activeCards.length && !options.includes('outreach') && !options.includes('opportunities')) {
       const raw = document.createElement('div');
       raw.className = 'card full fade-up';
@@ -1071,6 +924,9 @@ CRITICAL: Output every section with its exact heading (## SECTION: ...). Complet
     }
 
     resultsEl.classList.add('active');
+
+    // FIX: Staggered reveal now uses class toggling (.reveal) instead of
+    // setting inline opacity, which conflicted with CSS animation specificity.
     setTimeout(() => {
       resultsEl.querySelectorAll('.fade-up').forEach((el, i) => {
         setTimeout(() => el.classList.add('reveal'), i * 120);
@@ -1078,7 +934,7 @@ CRITICAL: Output every section with its exact heading (## SECTION: ...). Complet
     }, 60);
   }
 
-  // ── Copy ───────────────────────────────────────────────────────────────────
+  // ── Copy outreach ──────────────────────────────────────────────────────────
   function copyOutreach(btn) {
     const txt = document.getElementById('outreachText')?.textContent;
     if (!txt) return;
@@ -1086,8 +942,14 @@ CRITICAL: Output every section with its exact heading (## SECTION: ...). Complet
       btn.textContent = '✓ Copied!';
       btn.style.color = 'var(--accent)';
       btn.style.borderColor = 'var(--accent)';
-      setTimeout(() => { btn.textContent = 'Copy to clipboard'; btn.style.color = ''; btn.style.borderColor = ''; }, 2500);
-    }).catch(() => { btn.textContent = 'Copy failed — select text manually'; });
+      setTimeout(() => {
+        btn.textContent = 'Copy to clipboard';
+        btn.style.color = '';
+        btn.style.borderColor = '';
+      }, 2500);
+    }).catch(() => {
+      btn.textContent = 'Copy failed — select text manually';
+    });
   }
 
   // ── History ────────────────────────────────────────────────────────────────
@@ -1099,10 +961,10 @@ CRITICAL: Output every section with its exact heading (## SECTION: ...). Complet
     const sec   = document.getElementById('historySection');
     const pills = document.getElementById('historyPills');
     sec.style.display = 'block';
-    pills.innerHTML = '';
+    pills.innerHTML   = '';
     scanHistory.forEach(c => {
       const pill = document.createElement('div');
-      pill.className = 'history-pill';
+      pill.className   = 'history-pill';
       pill.textContent = c;
       pill.addEventListener('click', () => quickScan(c));
       pills.appendChild(pill);
@@ -1116,7 +978,10 @@ CRITICAL: Output every section with its exact heading (## SECTION: ...). Complet
 
   function escHtml(s) {
     if (!s) return '';
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    return String(s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
   }
 
   document.getElementById('companyInput').addEventListener('keydown', e => {
