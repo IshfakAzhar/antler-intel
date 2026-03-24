@@ -870,7 +870,6 @@ CRITICAL: Output every section with its exact heading (## SECTION: ...). Complet
         body: JSON.stringify({
           model: 'claude-sonnet-4-20250514',
           max_tokens: 4000,
-          tools: [{ type: 'web_search_20250305', name: 'web_search' }],
           messages: [{ role: 'user', content: buildPrompt(company, options, activeTemplate) }]
         })
       });
